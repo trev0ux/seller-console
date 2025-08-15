@@ -6,14 +6,23 @@ interface LeadDetailPanelProps {
   isOpen: boolean
   onClose: () => void
   onSave: (id: number, updates: Partial<Lead>) => Promise<void>
-  onConvertToOpportunity: (lead: Lead, opportunityData: Omit<Opportunity, 'id' | 'leadId'>) => Promise<void>
+  onConvertToOpportunity: (
+    lead: Lead,
+    opportunityData: Omit<Opportunity, 'id' | 'leadId'>
+  ) => Promise<void>
 }
 
-export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConvertToOpportunity }: LeadDetailPanelProps) {
+export default function LeadDetailPanel({
+  lead,
+  isOpen,
+  onClose,
+  onSave,
+  onConvertToOpportunity,
+}: LeadDetailPanelProps) {
   const [editingField, setEditingField] = useState<'status' | 'email' | null>(null)
   const [editValues, setEditValues] = useState({
     status: lead?.status || 'new',
-    email: lead?.email || ''
+    email: lead?.email || '',
   })
   const [errors, setErrors] = useState<{ email?: string }>({})
   const [saving, setSaving] = useState(false)
@@ -23,26 +32,26 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
     name: '',
     stage: 'qualification',
     amount: '',
-    accountName: ''
+    accountName: '',
   })
 
   useEffect(() => {
     if (lead) {
       setEditValues({
         status: lead.status,
-        email: lead.email
+        email: lead.email,
       })
       setOpportunityData({
         name: `${lead.name} - ${lead.company} Opportunity`,
         stage: 'qualification',
         amount: '',
-        accountName: lead.company
+        accountName: lead.company,
       })
       setErrors({})
       setEditingField(null)
       setShowConvertForm(false)
     }
-  }, [lead?.id, lead?.status, lead?.email])
+  }, [lead])
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -64,13 +73,13 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
       const updates: Partial<Lead> = {}
       if (editValues.email !== lead.email) updates.email = editValues.email
       if (editValues.status !== lead.status) updates.status = editValues.status
-      
+
       if (Object.keys(updates).length > 0) {
         await onSave(lead.id, updates)
       }
       setEditingField(null)
       onClose()
-    } catch (error) {
+    } catch (_error) {
       setErrors({ email: 'Failed to save changes' })
     } finally {
       setSaving(false)
@@ -81,7 +90,7 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
     if (lead) {
       setEditValues({
         status: lead.status,
-        email: lead.email
+        email: lead.email,
       })
     }
     setErrors({})
@@ -106,10 +115,10 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
         name: opportunityData.name,
         stage: opportunityData.stage,
         amount,
-        accountName: opportunityData.accountName
+        accountName: opportunityData.accountName,
       })
       onClose()
-    } catch (error) {
+    } catch (_error) {
       setErrors({ email: 'Failed to convert lead to opportunity' })
     } finally {
       setConverting(false)
@@ -121,10 +130,7 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
   return (
     <>
       {/* Backdrop */}
-      <div 
-        className="fixed inset-0 bg-black/30 z-40 transition-opacity"
-        onClick={onClose}
-      />
+      <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={onClose} />
 
       {/* Slide-over panel */}
       <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-xl transform transition-transform">
@@ -133,12 +139,20 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Lead Details</h2>
             <button
-              onClick={() => { handleCancel(); onClose(); }}
+              onClick={() => {
+                handleCancel()
+                onClose()
+              }}
               className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <span className="sr-only">Close</span>
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -155,7 +169,9 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
               {/* Company */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                <p className="text-sm text-gray-900 bg-gray-50 p-2 rounded border">{lead.company}</p>
+                <p className="text-sm text-gray-900 bg-gray-50 p-2 rounded border">
+                  {lead.company}
+                </p>
               </div>
 
               {/* Email - Editable */}
@@ -166,19 +182,17 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                     <input
                       type="email"
                       value={editValues.email}
-                      onChange={(e) => setEditValues(prev => ({ ...prev, email: e.target.value }))}
+                      onChange={e => setEditValues(prev => ({ ...prev, email: e.target.value }))}
                       onKeyDown={handleKeyDown}
                       className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                         errors.email ? 'border-red-300' : 'border-gray-300'
                       }`}
                       autoFocus
                     />
-                    {errors.email && (
-                      <p className="text-sm text-red-600">{errors.email}</p>
-                    )}
+                    {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
                   </div>
                 ) : (
-                  <div 
+                  <div
                     className="text-sm text-gray-900 bg-gray-50 p-2 rounded border cursor-pointer hover:bg-gray-100 transition-colors"
                     onClick={() => setEditingField('email')}
                   >
@@ -215,7 +229,9 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                   <div className="space-y-2">
                     <select
                       value={editValues.status}
-                      onChange={(e) => setEditValues(prev => ({ ...prev, status: e.target.value as LeadStatus }))}
+                      onChange={e =>
+                        setEditValues(prev => ({ ...prev, status: e.target.value as LeadStatus }))
+                      }
                       onKeyDown={handleKeyDown}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       autoFocus
@@ -227,16 +243,21 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                     </select>
                   </div>
                 ) : (
-                  <div 
+                  <div
                     className="cursor-pointer hover:bg-gray-100 transition-colors p-2 rounded border"
                     onClick={() => setEditingField('status')}
                   >
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      lead.status === 'new' ? 'bg-blue-100 text-blue-800' :
-                      lead.status === 'contacted' ? 'bg-yellow-100 text-yellow-800' :
-                      lead.status === 'qualified' ? 'bg-green-100 text-green-800' :
-                      'bg-red-100 text-red-800'
-                    }`}>
+                    <span
+                      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                        lead.status === 'new'
+                          ? 'bg-blue-100 text-blue-800'
+                          : lead.status === 'contacted'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : lead.status === 'qualified'
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-red-100 text-red-800'
+                      }`}
+                    >
                       {lead.status}
                     </span>
                     <span className="ml-2 text-xs text-gray-500">(click to edit)</span>
@@ -250,11 +271,15 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Convert to Opportunity</h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Opportunity Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Opportunity Name
+                      </label>
                       <input
                         type="text"
                         value={opportunityData.name}
-                        onChange={(e) => setOpportunityData(prev => ({ ...prev, name: e.target.value }))}
+                        onChange={e =>
+                          setOpportunityData(prev => ({ ...prev, name: e.target.value }))
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter opportunity name"
                       />
@@ -264,7 +289,9 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                       <label className="block text-sm font-medium text-gray-700 mb-1">Stage</label>
                       <select
                         value={opportunityData.stage}
-                        onChange={(e) => setOpportunityData(prev => ({ ...prev, stage: e.target.value }))}
+                        onChange={e =>
+                          setOpportunityData(prev => ({ ...prev, stage: e.target.value }))
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       >
                         <option value="qualification">Qualification</option>
@@ -276,11 +303,15 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Amount (Optional)</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Amount (Optional)
+                      </label>
                       <input
                         type="number"
                         value={opportunityData.amount}
-                        onChange={(e) => setOpportunityData(prev => ({ ...prev, amount: e.target.value }))}
+                        onChange={e =>
+                          setOpportunityData(prev => ({ ...prev, amount: e.target.value }))
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter amount"
                         min="0"
@@ -289,11 +320,15 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">Account Name</label>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Account Name
+                      </label>
                       <input
                         type="text"
                         value={opportunityData.accountName}
-                        onChange={(e) => setOpportunityData(prev => ({ ...prev, accountName: e.target.value }))}
+                        onChange={e =>
+                          setOpportunityData(prev => ({ ...prev, accountName: e.target.value }))
+                        }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter account name"
                       />
@@ -302,7 +337,9 @@ export default function LeadDetailPanel({ lead, isOpen, onClose, onSave, onConve
                     <div className="flex space-x-3 pt-2">
                       <button
                         onClick={handleConvert}
-                        disabled={converting || !opportunityData.name || !opportunityData.accountName}
+                        disabled={
+                          converting || !opportunityData.name || !opportunityData.accountName
+                        }
                         className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50"
                       >
                         {converting ? 'Converting...' : 'Create Opportunity'}

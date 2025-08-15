@@ -23,7 +23,7 @@ export function useLeads() {
     error: null,
     searchTerm: '',
     statusFilter: 'all',
-    sortBy: 'score'
+    sortBy: 'score',
   })
 
   useEffect(() => {
@@ -31,17 +31,17 @@ export function useLeads() {
       try {
         setState(prev => ({ ...prev, loading: true, error: null }))
         await simulateLatency()
-        
+
         // Load from localStorage or use leads.json data
         const savedLeads = localStorage.getItem('leads')
         const leads = savedLeads ? JSON.parse(savedLeads) : leadsData
-        
+
         setState(prev => ({ ...prev, leads, loading: false }))
-      } catch (error) {
-        setState(prev => ({ 
-          ...prev, 
-          error: 'Failed to load leads', 
-          loading: false 
+      } catch (_error) {
+        setState(prev => ({
+          ...prev,
+          error: 'Failed to load leads',
+          loading: false,
         }))
       }
     }
@@ -55,9 +55,8 @@ export function useLeads() {
     // Search filter
     if (state.searchTerm) {
       const term = state.searchTerm.toLowerCase()
-      filtered = filtered.filter(lead =>
-        lead.name.toLowerCase().includes(term) ||
-        lead.company.toLowerCase().includes(term)
+      filtered = filtered.filter(
+        lead => lead.name.toLowerCase().includes(term) || lead.company.toLowerCase().includes(term)
       )
     }
 
@@ -86,18 +85,18 @@ export function useLeads() {
   const updateLead = async (id: number, updates: Partial<Lead>) => {
     try {
       await simulateLatency(200)
-      
+
       setState(prev => {
         const updatedLeads = prev.leads.map(lead =>
           lead.id === id ? { ...lead, ...updates } : lead
         )
-        
+
         // Save to localStorage
         localStorage.setItem('leads', JSON.stringify(updatedLeads))
-        
+
         return { ...prev, leads: updatedLeads }
       })
-    } catch (error) {
+    } catch (_error) {
       setState(prev => ({ ...prev, error: 'Failed to update lead' }))
     }
   }
@@ -117,16 +116,16 @@ export function useLeads() {
   const removeLead = async (id: number) => {
     try {
       await simulateLatency(200)
-      
+
       setState(prev => {
         const updatedLeads = prev.leads.filter(lead => lead.id !== id)
-        
+
         // Save to localStorage
         localStorage.setItem('leads', JSON.stringify(updatedLeads))
-        
+
         return { ...prev, leads: updatedLeads }
       })
-    } catch (error) {
+    } catch (_error) {
       setState(prev => ({ ...prev, error: 'Failed to remove lead' }))
     }
   }
@@ -142,6 +141,6 @@ export function useLeads() {
     removeLead,
     setSearchTerm,
     setStatusFilter,
-    setSortBy
+    setSortBy,
   }
 }

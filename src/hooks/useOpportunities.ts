@@ -11,12 +11,12 @@ export function useOpportunities() {
       try {
         setLoading(true)
         setError(null)
-        
+
         const savedOpportunities = localStorage.getItem('opportunities')
         const data = savedOpportunities ? JSON.parse(savedOpportunities) : []
-        
+
         setOpportunities(data)
-      } catch (error) {
+      } catch (_error) {
         setError('Failed to load opportunities')
       } finally {
         setLoading(false)
@@ -31,14 +31,14 @@ export function useOpportunities() {
       const newId = Date.now()
       const newOpportunity: Opportunity = {
         ...opportunity,
-        id: newId
+        id: newId,
       }
 
       const updatedOpportunities = [...opportunities, newOpportunity]
       setOpportunities(updatedOpportunities)
-      
+
       localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
-      
+
       return newOpportunity
     } catch (error) {
       setError('Failed to create opportunity')
@@ -51,7 +51,7 @@ export function useOpportunities() {
       const updatedOpportunities = opportunities.map(opp =>
         opp.id === id ? { ...opp, ...updates } : opp
       )
-      
+
       setOpportunities(updatedOpportunities)
       localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
     } catch (error) {
@@ -65,6 +65,6 @@ export function useOpportunities() {
     loading,
     error,
     addOpportunity,
-    updateOpportunity
+    updateOpportunity,
   }
 }
