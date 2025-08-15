@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "company": "TechCorp Inc",
+    "email": "john.doe@techcorp.com",
+    "source": "Website",
+    "score": 85,
+    "status": "new"
+  },
+  {
+    "id": 2,
+    "name": "Sarah Wilson",
+    "company": "DataFlow Solutions",
+    "email": "sarah@dataflow.io",
+    "source": "LinkedIn",
+    "score": 92,
+    "status": "contacted"
+  },
+  {
+    "id": 3,
+    "name": "Mike Johnson",
+    "company": "CloudTech",
+    "email": "mike.johnson@cloudtech.com",
+    "source": "Referral",
+    "score": 78,
+    "status": "qualified"
+  },
+  {
+    "id": 4,
+    "name": "Emily Chen",
+    "company": "StartupXYZ",
+    "email": "emily@startupxyz.com",
+    "source": "Cold Email",
+    "score": 65,
+    "status": "new"
+  },
+  {
+    "id": 5,
+    "name": "David Brown",
+    "company": "Enterprise Corp",
+    "email": "david.brown@enterprise.com",
+    "source": "Trade Show",
+    "score": 88,
+    "status": "contacted"
+  },
+  {
+    "id": 6,
+    "name": "Lisa Garcia",
+    "company": "InnovateLab",
+    "email": "lisa@innovatelab.com",
+    "source": "Website",
+    "score": 73,
+    "status": "new"
+  },
+  {
+    "id": 7,
+    "name": "Robert Taylor",
+    "company": "TechFlow Inc",
+    "email": "robert@techflow.com",
+    "source": "Referral",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": 8,
+    "name": "Jennifer Lee",
+    "company": "Digital Dynamics",
+    "email": "jennifer@digitaldynamics.com",
+    "source": "LinkedIn",
+    "score": 82,
+    "status": "contacted"
+  }
+]
