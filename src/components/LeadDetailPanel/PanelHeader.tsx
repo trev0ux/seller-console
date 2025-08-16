@@ -1,4 +1,9 @@
-export default function AppHeader() {
+type AppHeaderProps = {
+  handleCancel: () => void
+  onClose: () => void
+}
+
+export default function PanelHeader({ handleCancel, onClose }: AppHeaderProps) {
   return (
     <>
       <div className="flex items-center justify-between p-6 border-b border-gray-200">

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import type { Lead, LeadStatus, Opportunity } from '../types'
+import type { Lead, LeadStatus, Opportunity } from '../../types'
+import Button from './atoms/Button'
+import PanelHeader from './PanelHeader'
+import Input from './atoms/Input'
 
 interface LeadDetailPanelProps {
   lead: Lead | null
@@ -51,7 +54,7 @@ export default function LeadDetailPanel({
       setEditingField(null)
       setShowConvertForm(false)
     }
-  }, [lead])
+  }, [lead?.id, lead?.status, lead?.email])
 
   const validateEmail = (email: string): boolean => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -79,7 +82,7 @@ export default function LeadDetailPanel({
       }
       setEditingField(null)
       onClose()
-    } catch (_error) {
+    } catch (error) {
       setErrors({ email: 'Failed to save changes' })
     } finally {
       setSaving(false)
@@ -95,6 +98,7 @@ export default function LeadDetailPanel({
     }
     setErrors({})
     setEditingField(null)
+    onClose()
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -118,7 +122,7 @@ export default function LeadDetailPanel({
         accountName: opportunityData.accountName,
       })
       onClose()
-    } catch (_error) {
+    } catch (error) {
       setErrors({ email: 'Failed to convert lead to opportunity' })
     } finally {
       setConverting(false)
@@ -133,29 +137,10 @@ export default function LeadDetailPanel({
       <div className="fixed inset-0 bg-black/30 z-40 transition-opacity" onClick={onClose} />
 
       {/* Slide-over panel */}
-      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-white shadow-xl transform transition-transform">
+      <div className="fixed inset-y-0 right-0 z-50 w-full max-w-lg bg-white shadow-xl transform transition-transform">
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Lead Details</h2>
-            <button
-              onClick={() => {
-                handleCancel()
-                onClose()
-              }}
-              className="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <span className="sr-only">Close</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
+          <PanelHeader handleCancel={handleCancel} onClose={onClose} />
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-6">
@@ -179,14 +164,11 @@ export default function LeadDetailPanel({
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                 {editingField === 'email' ? (
                   <div className="space-y-2">
-                    <input
+                    <Input
                       type="email"
                       value={editValues.email}
-                      onChange={e => setEditValues(prev => ({ ...prev, email: e.target.value }))}
+                      onChange={event => setEditValues(prev => ({ ...prev, email: event }))}
                       onKeyDown={handleKeyDown}
-                      className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                        errors.email ? 'border-red-300' : 'border-gray-300'
-                      }`}
                       autoFocus
                     />
                     {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
@@ -274,12 +256,10 @@ export default function LeadDetailPanel({
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Opportunity Name
                       </label>
-                      <input
+                      <Input
                         type="text"
                         value={opportunityData.name}
-                        onChange={e =>
-                          setOpportunityData(prev => ({ ...prev, name: e.target.value }))
-                        }
+                        onChange={event => setOpportunityData(prev => ({ ...prev, name: event }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter opportunity name"
                       />
@@ -306,12 +286,10 @@ export default function LeadDetailPanel({
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Amount (Optional)
                       </label>
-                      <input
+                      <Input
                         type="number"
                         value={opportunityData.amount}
-                        onChange={e =>
-                          setOpportunityData(prev => ({ ...prev, amount: e.target.value }))
-                        }
+                        onChange={event => setOpportunityData(prev => ({ ...prev, amount: event }))}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter amount"
                         min="0"
@@ -323,11 +301,11 @@ export default function LeadDetailPanel({
                       <label className="block text-sm font-medium text-gray-700 mb-1">
                         Account Name
                       </label>
-                      <input
+                      <Input
                         type="text"
                         value={opportunityData.accountName}
-                        onChange={e =>
-                          setOpportunityData(prev => ({ ...prev, accountName: e.target.value }))
+                        onChange={event =>
+                          setOpportunityData(prev => ({ ...prev, accountName: event }))
                         }
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Enter account name"
@@ -335,22 +313,22 @@ export default function LeadDetailPanel({
                     </div>
 
                     <div className="flex space-x-3 pt-2">
-                      <button
+                      <Button
                         onClick={handleConvert}
+                        variant="primary"
                         disabled={
                           converting || !opportunityData.name || !opportunityData.accountName
                         }
-                        className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50"
                       >
                         {converting ? 'Converting...' : 'Create Opportunity'}
-                      </button>
-                      <button
+                      </Button>
+                      <Button
                         onClick={() => setShowConvertForm(false)}
                         disabled={converting}
-                        className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+                        variant="ghost"
                       >
                         Cancel
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -361,30 +339,17 @@ export default function LeadDetailPanel({
           {/* Footer */}
           <div className="border-t border-gray-200 p-6">
             <div className="flex justify-between">
-              <div className="flex space-x-3">
-                <button
-                  onClick={handleCancel}
-                  disabled={saving}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-                >
+              <div className="flex space-x-3 justify-end">
+                <Button variant="ghost" disabled={saving} size="md" onClick={handleCancel}>
                   Cancel
-                </button>
-                <button
-                  onClick={handleSaveAll}
-                  disabled={saving || !hasChanges}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
-                >
+                </Button>
+                <Button disabled={saving || !hasChanges} onClick={handleSaveAll}>
                   {saving ? 'Saving...' : 'Save Changes'}
-                </button>
+                </Button>
               </div>
-              <div>
-                <button
-                  onClick={() => setShowConvertForm(true)}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
-                >
-                  Convert to Opportunity
-                </button>
-              </div>
+              <Button variant="ghost" size="md" onClick={() => setShowConvertForm(true)}>
+                Convert to Opportunity
+              </Button>
             </div>
           </div>
         </div>

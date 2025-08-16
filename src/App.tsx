@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import type { Lead, Opportunity } from './types'
 import { useLeads } from './hooks/useLeads'
 import { useOpportunities } from './hooks/useOpportunities'
-import LeadDetailPanel from './components/LeadDetailPanel'
+import LeadDetailPanel from './components/LeadDetailPanel/LeadDetailPanel'
 
 function App() {
   const {
