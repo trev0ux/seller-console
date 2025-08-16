@@ -1,4 +1,3 @@
-// hooks/useLeads.ts
 import { useState, useEffect, useMemo } from 'react'
 import type { Lead, LeadStatus } from '../types/index'
 import leadsData from '../data/leads.json'
@@ -32,7 +31,6 @@ export function useLeads() {
         setState(prev => ({ ...prev, loading: true, error: null }))
         await simulateLatency()
 
-        // Load from localStorage or use leads.json data
         const savedLeads = localStorage.getItem('leads')
         const leads = savedLeads ? JSON.parse(savedLeads) : leadsData
 
@@ -52,7 +50,6 @@ export function useLeads() {
   const filteredAndSortedLeads = useMemo(() => {
     let filtered = state.leads
 
-    // Search filter
     if (state.searchTerm) {
       const term = state.searchTerm.toLowerCase()
       filtered = filtered.filter(
@@ -60,12 +57,10 @@ export function useLeads() {
       )
     }
 
-    // Status filter
     if (state.statusFilter !== 'all') {
       filtered = filtered.filter(lead => lead.status === state.statusFilter)
     }
 
-    // Sort
     filtered.sort((a, b) => {
       switch (state.sortBy) {
         case 'score':
@@ -91,7 +86,6 @@ export function useLeads() {
           lead.id === id ? { ...lead, ...updates } : lead
         )
 
-        // Save to localStorage
         localStorage.setItem('leads', JSON.stringify(updatedLeads))
 
         return { ...prev, leads: updatedLeads }

@@ -11,7 +11,7 @@ export default function Select({
   'aria-label': ariaLabel,
 }: SelectProps) {
   const baseClasses = `
-    w-full px-3 py-2 border rounded-md 
+    w-full px-3 py-2 border rounded-md  bg-white
     focus:outline-none focus:ring-2 focus:ring-blue-500 
     transition-colors duration-200
     disabled:bg-gray-50 disabled:text-gray-400 disabled:cursor-not-allowed
