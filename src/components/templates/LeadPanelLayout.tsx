@@ -8,13 +8,20 @@ interface LeadDetailPanelProps {
   lead: Lead | null
   isOpen: boolean
   onClose: () => void
+  onSave?: (id: number, updates: Partial<Lead>) => Promise<void>
   onConvertToOpportunity: (
     lead: Lead,
     opportunityData: Omit<Opportunity, 'id' | 'leadId'>
   ) => Promise<void>
 }
 
-export default function LeadPanelLayout({ lead, isOpen, onClose, onConvertToOpportunity }: LeadDetailPanelProps) {
+export default function LeadPanelLayout({
+  lead,
+  isOpen,
+  onClose,
+  onSave,
+  onConvertToOpportunity,
+}: LeadDetailPanelProps) {
   const [editingField, setEditingField] = useState<'status' | 'email' | null>(null)
   const [editValues, setEditValues] = useState({
     status: lead?.status || 'new',
@@ -22,6 +29,7 @@ export default function LeadPanelLayout({ lead, isOpen, onClose, onConvertToOppo
   })
   const [errors, setErrors] = useState<{ email?: string }>({})
   const [converting, setConverting] = useState(false)
+  const [saving, setSaving] = useState(false)
   const [showConvertForm, setShowConvertForm] = useState(false)
   const [opportunityData, setOpportunityData] = useState({
     name: '',
@@ -84,6 +92,41 @@ export default function LeadPanelLayout({ lead, isOpen, onClose, onConvertToOppo
     } finally {
       setConverting(false)
     }
+  }
+
+  const hasChanges = lead
+    ? editValues.status !== lead.status || editValues.email !== lead.email
+    : false
+
+  const handleSaveAll = async () => {
+    if (!onSave || !hasChanges || !lead) return
+
+    setSaving(true)
+    try {
+      const updates: Partial<Lead> = {}
+      if (editValues.status !== lead.status) updates.status = editValues.status
+      if (editValues.email !== lead.email) updates.email = editValues.email
+
+      await onSave(lead.id, updates)
+      onClose()
+    } catch (error) {
+      console.error('Failed to save changes:', error)
+      setErrors({ email: 'Failed to save changes' })
+    } finally {
+      setSaving(false)
+    }
+  }
+
+  const handleQuickConvert = () => {
+    if (!lead) return
+
+    const opportunityData = {
+      name: `${lead.name} - ${lead.company} Opportunity`,
+      stage: 'qualification' as const,
+      amount: undefined,
+      accountName: lead.company,
+    }
+    onConvertToOpportunity(lead, opportunityData)
   }
 
   if (!isOpen || !lead) return null
@@ -243,6 +286,38 @@ export default function LeadPanelLayout({ lead, isOpen, onClose, onConvertToOppo
           </div>
         )}
       </section>
+
+      {/* Footer with action buttons */}
+      <footer className="border-t border-gray-200 pt-6 mt-6">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between">
+          <div className="flex items-center flex-col lg:flex-row gap-4 lg:gap-3 ">
+            <Button
+              variant="ghost"
+              disabled={saving}
+              size="md"
+              className="lg:w-auto w-full"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+            {onSave && (
+              <Button
+                variant="primary"
+                size="md"
+                className="lg:w-auto w-full"
+                disabled={saving || !hasChanges}
+                onClick={handleSaveAll}
+                loading={saving}
+              >
+                Save Changes
+              </Button>
+            )}
+          </div>
+          <Button variant="ghost" size="md" onClick={handleQuickConvert}>
+            Convert to Opportunity
+          </Button>
+        </div>
+      </footer>
     </>
   )
 }

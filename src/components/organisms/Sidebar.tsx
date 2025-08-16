@@ -18,10 +18,19 @@ function Body({ children }: { children: React.ReactNode }) {
   return <>{children}</>
 }
 
+function Footer({ children }: { children: React.ReactNode }) {
+  return <>{children}</>
+}
+
 export default function Sidebar({ lead, isOpen, onClose, children }: LeadDetailPanelProps) {
   const body = React.Children.toArray(children)
     .filter(React.isValidElement)
     .find(child => child.type === Body)
+
+  const footer = React.Children.toArray(children)
+    .filter(React.isValidElement)
+    .find(child => child.type === Footer)
+
   if (!isOpen || !lead) return null
 
   return (
@@ -33,6 +42,8 @@ export default function Sidebar({ lead, isOpen, onClose, children }: LeadDetailP
           <PanelHeader handleCancel={onClose} onClose={onClose} />
 
           <main className="flex-1 overflow-y-auto p-6">{body}</main>
+
+          {footer && <footer className="border-t border-gray-200 p-6 bg-gray-50">{footer}</footer>}
         </div>
       </div>
     </>
@@ -40,3 +51,4 @@ export default function Sidebar({ lead, isOpen, onClose, children }: LeadDetailP
 }
 
 Sidebar.Body = Body
+Sidebar.Footer = Footer

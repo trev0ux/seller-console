@@ -24,7 +24,7 @@ export default function Button({
   className = '',
 }: ButtonProps) {
   const baseClasses =
-    'font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
+    'font-medium flex items-center gap-2 justify-center rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed'
 
   const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`
 
