@@ -45,8 +45,7 @@ function OpportunitiesDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <div className="flex-col gap-4 lg:flex-row flex items-start lg:items-center justify-between">
             <div>
@@ -66,7 +65,6 @@ function OpportunitiesDashboard() {
 
         <OpportunitiesTable opportunities={opportunities} />
       </div>
-    </div>
   )
 }
 

@@ -80,7 +80,7 @@ export default function ConvertToOpportunityModal({
         accountName: opportunityData.accountName,
       })
       handleClose()
-    } catch (error) {
+    } catch (_error) {
       setErrors({ general: 'Failed to convert lead to opportunity' })
     } finally {
       setConverting(false)
