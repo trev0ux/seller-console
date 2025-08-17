@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Lead } from '../../types'
 
 interface LeadTableProps {

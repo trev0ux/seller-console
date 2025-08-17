@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Opportunity } from '../../types'
 
 interface OpportunitiesTableProps {

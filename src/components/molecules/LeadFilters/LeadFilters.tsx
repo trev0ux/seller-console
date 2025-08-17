@@ -1,4 +1,3 @@
-import React from 'react'
 import type { LeadStatus } from '../../../types'
 import Input from '../../atoms/Input'
 import { SearchIcon } from '../../atoms/Icon/icons/SearchIcon'
