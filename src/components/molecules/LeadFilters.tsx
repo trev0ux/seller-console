@@ -20,7 +20,7 @@ export default function LeadFilters({
   onSortByChange,
 }: LeadFiltersProps) {
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm border mb-6">
+    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
       <div className="flex flex-col sm:flex-row gap-4">
         <Input
           type="text"

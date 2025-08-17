@@ -11,21 +11,24 @@ interface LeadTableProps {
   showingTo?: number
 }
 
-export default function LeadTable({ leads, searchTerm, statusFilter, onLeadSelect }: LeadTableProps) {
+export default function LeadTable({
+  leads,
+  searchTerm,
+  statusFilter,
+  onLeadSelect,
+}: LeadTableProps) {
   if (leads.length === 0) {
     return (
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
         <div className="text-gray-500">
-          {searchTerm || statusFilter !== 'all'
-            ? 'No leads match your criteria'
-            : 'No leads found'}
+          {searchTerm || statusFilter !== 'all' ? 'No leads match your criteria' : 'No leads found'}
         </div>
       </div>
     )
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+    <div className="bg-white rounded-tl-lg rounded-tr-lg shadow-sm border border-gray-200 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50">

@@ -45,15 +45,13 @@ export default function Pagination({
     if (totalPages > 1) {
       rangeWithDots.push(totalPages)
     }
-    return rangeWithDots.filter((page, index, array) => 
-      array.indexOf(page) === index
-    )
+    return rangeWithDots.filter((page, index, array) => array.indexOf(page) === index)
   }
 
   if (totalPages <= 1) return null
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div className="bg-white shadow-sm border border-gray-200  rounded-br-lg  rounded-bl-lg  px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
       <div className="flex-1 flex justify-between sm:hidden">
         <button
           onClick={() => onPageChange(currentPage - 1)}
@@ -86,7 +84,7 @@ export default function Pagination({
             <select
               id="itemsPerPage"
               value={itemsPerPage}
-              onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+              onChange={e => onItemsPerPageChange(Number(e.target.value))}
               className="border border-gray-300 rounded-md px-2 py-1 text-sm"
             >
               <option value={5}>5</option>
@@ -97,7 +95,10 @@ export default function Pagination({
           </div>
         </div>
         <div>
-          <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+          <nav
+            className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+            aria-label="Pagination"
+          >
             <button
               onClick={() => onPageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -121,8 +122,8 @@ export default function Pagination({
                   page === currentPage
                     ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
                     : typeof page === 'number'
-                    ? 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
-                    : 'bg-white border-gray-300 text-gray-700 cursor-default'
+                      ? 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                      : 'bg-white border-gray-300 text-gray-700 cursor-default'
                 }`}
               >
                 {page}

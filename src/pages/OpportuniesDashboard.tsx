@@ -45,7 +45,7 @@ function OpportunitiesDashboard() {
     },
     {
       label: 'Total Value',
-      value: opportunities.reduce((sum, opp) => sum + opp.value, 0),
+      value: opportunities.reduce((sum, opp) => sum + (opp.amount || 0), 0),
       color: 'yellow',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

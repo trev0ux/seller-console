@@ -11,9 +11,7 @@ export default function OpportunitiesTable({ opportunities }: OpportunitiesTable
       <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Opportunities</h2>
-          <p className="text-sm text-gray-600 mt-1">
-            Track and manage your sales opportunities
-          </p>
+          <p className="text-sm text-gray-600 mt-1">Track and manage your sales opportunities</p>
         </div>
         <div className="p-8 text-center">
           <div className="text-gray-500">
@@ -25,12 +23,10 @@ export default function OpportunitiesTable({ opportunities }: OpportunitiesTable
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+    <div className="bg-white rounded-br-[0] rounded-tr-[0] shadow-sm border overflow-hidden">
       <div className="p-6 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900">Opportunities</h2>
-        <p className="text-sm text-gray-600 mt-1">
-          Track and manage your sales opportunities
-        </p>
+        <p className="text-sm text-gray-600 mt-1">Track and manage your sales opportunities</p>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full">
@@ -54,9 +50,7 @@ export default function OpportunitiesTable({ opportunities }: OpportunitiesTable
             {opportunities.map(opportunity => (
               <tr key={opportunity.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">
-                    {opportunity.name}
-                  </div>
+                  <div className="text-sm font-medium text-gray-900">{opportunity.name}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span
