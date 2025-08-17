@@ -37,7 +37,6 @@ function LeadDashboard() {
   } = useLeads()
 
   const {
-    opportunities,
     loading: opportunitiesLoading,
     error: opportunitiesError,
     addOpportunity,
@@ -117,73 +116,73 @@ function LeadDashboard() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <div className="flex-col gap-4 lg:flex-row flex items-start lg:items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Lead Dashboard</h1>
-              <p className="text-gray-600 mt-2">Manage and track your sales leads</p>
-            </div>
-            <Link
-              to="/opportunities"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
-            >
-              View Opportunities
-            </Link>
+      <div className="mb-8">
+        <div className="flex-col gap-4 lg:flex-row flex items-start lg:items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Lead Dashboard</h1>
+            <p className="text-gray-600 mt-2">Manage and track your sales leads</p>
           </div>
+          <Link
+            to="/opportunities"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+          >
+            View Opportunities
+          </Link>
         </div>
-
-        <Stats stats={leadsStats} />
-
-        <LeadFilters
-          searchTerm={searchTerm}
-          statusFilter={statusFilter}
-          sortBy={sortBy}
-          onSearchChange={setSearchTerm}
-          onStatusFilterChange={setStatusFilter}
-          onSortByChange={setSortBy}
-        />
-
-        <LeadTable
-          leads={leads}
-          searchTerm={searchTerm}
-          statusFilter={statusFilter}
-          onLeadSelect={setSelectedLead}
-        />
-
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-          totalItems={totalItems}
-          itemsPerPage={itemsPerPage}
-          onItemsPerPageChange={setItemsPerPage}
-        />
-
-        <Sidebar
-          lead={selectedLead}
-          onSave={updateLead}
-          isOpen={!!selectedLead}
-          onClose={handleCancel}
-          onConvertToOpportunity={handleOpenConvertModal}
-        >
-          <Sidebar.Body>
-            <LeadPanelLayout
-              lead={selectedLead}
-              isOpen={!!selectedLead}
-              onClose={handleCancel}
-              onSave={updateLead}
-              onConvertToOpportunity={handleOpenConvertModal}
-            />
-          </Sidebar.Body>
-        </Sidebar>
-
-        <ConvertToOpportunityModal
-          lead={leadToConvert}
-          isOpen={convertModalOpen}
-          onClose={handleCloseConvertModal}
-          onConvert={handleConvertToOpportunity}
-        />
       </div>
+
+      <Stats stats={leadsStats} />
+
+      <LeadFilters
+        searchTerm={searchTerm}
+        statusFilter={statusFilter}
+        sortBy={sortBy}
+        onSearchChange={setSearchTerm}
+        onStatusFilterChange={setStatusFilter}
+        onSortByChange={setSortBy}
+      />
+
+      <LeadTable
+        leads={leads}
+        searchTerm={searchTerm}
+        statusFilter={statusFilter}
+        onLeadSelect={setSelectedLead}
+      />
+
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={setCurrentPage}
+        totalItems={totalItems}
+        itemsPerPage={itemsPerPage}
+        onItemsPerPageChange={setItemsPerPage}
+      />
+
+      <Sidebar
+        lead={selectedLead}
+        onSave={updateLead}
+        isOpen={!!selectedLead}
+        onClose={handleCancel}
+        onConvertToOpportunity={handleConvertToOpportunity}
+      >
+        <Sidebar.Body>
+          <LeadPanelLayout
+            lead={selectedLead}
+            isOpen={!!selectedLead}
+            onClose={handleCancel}
+            onSave={updateLead}
+            onConvertToOpportunity={handleOpenConvertModal}
+          />
+        </Sidebar.Body>
+      </Sidebar>
+
+      <ConvertToOpportunityModal
+        lead={leadToConvert}
+        isOpen={convertModalOpen}
+        onClose={handleCloseConvertModal}
+        onConvert={handleConvertToOpportunity}
+      />
+    </div>
   )
 }
 
