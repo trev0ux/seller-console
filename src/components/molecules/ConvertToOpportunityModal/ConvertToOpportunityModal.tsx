@@ -3,6 +3,7 @@ import type { Lead, Opportunity } from '../../../types'
 import Button from '../../atoms/Button'
 import Input from '../../atoms/Input'
 import Select from '../../atoms/Select'
+import { XIcon } from '../../atoms/Icon'
 
 interface ConvertToOpportunityModalProps {
   lead: Lead | null
@@ -99,14 +100,7 @@ export default function ConvertToOpportunityModal({
               onClick={handleClose}
               className="text-gray-400 hover:text-gray-600 transition-colors"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              <XIcon />
             </button>
           </div>
 
