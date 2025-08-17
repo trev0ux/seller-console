@@ -23,7 +23,7 @@ export default function OpportunitiesTable({ opportunities }: OpportunitiesTable
   }
 
   return (
-    <div className="bg-white rounded-br-[0] rounded-tr-[0] shadow-sm border overflow-hidden">
+    <div className="bg-white rounded-tl-lg rounded-tr-lg shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 border-b border-gray-200">
         <h2 className="text-lg font-semibold text-gray-900">Opportunities</h2>
         <p className="text-sm text-gray-600 mt-1">Track and manage your sales opportunities</p>

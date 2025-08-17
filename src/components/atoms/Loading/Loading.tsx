@@ -39,23 +39,21 @@ export default function Loading({
   const textColorClass = textColors[color]
 
   const spinner = (
-    <div className={`animate-spin rounded-full ${sizeClass} border-2 border-transparent ${colorClass} border-t-current`}></div>
+    <div
+      className={`animate-spin rounded-full ${sizeClass} border-2 border-transparent ${colorClass} border-t-blue-600`}
+    ></div>
   )
 
   const content = (
     <div className={`flex flex-col items-center justify-center space-y-2 ${className}`}>
       {spinner}
-      {text && (
-        <span className={`${textSizeClass} ${textColorClass} font-medium`}>
-          {text}
-        </span>
-      )}
+      {text && <span className={`${textSizeClass} ${textColorClass} font-medium`}>{text}</span>}
     </div>
   )
 
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50">
+      <div className="fixed top-0 left-0 inset-0 bg-white bg-opacity-75 w-full h-full flex items-center justify-center z-50">
         {content}
       </div>
     )

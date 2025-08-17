@@ -1,6 +1,6 @@
 import React, { type ReactElement } from 'react'
 import type { Lead, Opportunity } from '../../types'
-import PanelHeader from '../molecules/PanelHeader'
+import PanelHeader from '../molecules/PanelHeader/PanelHeader'
 
 interface LeadDetailPanelProps {
   lead: Lead | null

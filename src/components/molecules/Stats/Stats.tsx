@@ -24,10 +24,12 @@ export default function Stats({ stats }: StatsProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
       {stats.map((stat, index) => (
-        <div key={index} className="bg-white rounded-lg shadow-sm border p-6">
+        <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className={`w-8 h-8 ${colorClasses[stat.color]} rounded-full flex items-center justify-center`}>
+              <div
+                className={`w-8 h-8 ${colorClasses[stat.color]} rounded-full flex items-center justify-center`}
+              >
                 {stat.icon}
               </div>
             </div>

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import type { Lead, LeadStatus, Opportunity } from '../../types'
+import type { Lead, LeadStatus } from '../../types'
 import Button from '../atoms/Button'
 import Input from '../atoms/Input'
-import Select from '../atoms/Select'
 
 interface LeadDetailPanelProps {
   lead: Lead | null
@@ -84,7 +83,6 @@ export default function LeadPanelLayout({
     }
   }
 
-
   if (!isOpen || !lead) return null
 
   return (
@@ -161,7 +159,6 @@ export default function LeadPanelLayout({
             </select>
           </div>
         </div>
-
       </section>
 
       <footer className="border-t border-gray-200 pt-6 mt-6">

@@ -1,6 +1,6 @@
 import React from 'react'
-import type { LeadStatus } from '../../types'
-import Input from '../atoms/Input'
+import type { LeadStatus } from '../../../types'
+import Input from '../../atoms/Input'
 
 interface LeadFiltersProps {
   searchTerm: string
