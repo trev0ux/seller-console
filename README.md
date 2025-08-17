@@ -7,6 +7,12 @@
 
 > **A lightweight, modern sales console for triaging leads and converting them into opportunities. Built with performance, scalability, and user experience in mind.**
 
+## 🌐 Live Demo
+
+**[🚀 View Live Demo](https://seller-console.vercel.app/)**
+
+Experience the full application with sample data and all features.
+
 ![Seller Console Demo](/public/project.png)
 
 ## ✨ Features
