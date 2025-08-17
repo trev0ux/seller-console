@@ -1,30 +1,37 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { Lead, Opportunity } from '../types'
 import { useLeads } from '../hooks/useLeads'
 import { useOpportunities } from '../hooks/useOpportunities'
 import Sidebar from '../components/organisms/Sidebar'
 import LeadTable from '../components/organisms/LeadTable'
-import OpportunitiesTable from '../components/organisms/OpportunitiesTable'
 import LeadFilters from '../components/molecules/LeadFilters'
 import Stats from '../components/molecules/Stats'
+import Pagination from '../components/molecules/Pagination/Pagination'
+import ConvertToOpportunityModal from '../components/molecules/ConvertToOpportunityModal/ConvertToOpportunityModal'
 import type { StatItem } from '../components/molecules/Stats'
-import Header from '../components/molecules/Header'
-import type { NavigationTab } from '../components/molecules/Header'
 import LeadPanelLayout from '../components/templates/LeadPanelLayout'
 
 function LeadDashboard() {
   const {
     leads,
+    allLeads,
     loading,
     error,
     searchTerm,
     statusFilter,
     sortBy,
+    currentPage,
+    itemsPerPage,
+    totalPages,
+    totalItems,
     updateLead,
     removeLead,
     setSearchTerm,
     setStatusFilter,
     setSortBy,
+    setCurrentPage,
+    setItemsPerPage,
   } = useLeads()
 
   const {
@@ -35,25 +42,13 @@ function LeadDashboard() {
   } = useOpportunities()
 
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
-  const [currentView, setCurrentView] = useState<'leads' | 'opportunities'>('leads')
-
-  const navigationTabs: NavigationTab[] = [
-    {
-      id: 'leads',
-      label: 'Leads',
-      count: leads.length,
-    },
-    {
-      id: 'opportunities',
-      label: 'Opportunities',
-      count: opportunities.length,
-    },
-  ]
+  const [convertModalOpen, setConvertModalOpen] = useState(false)
+  const [leadToConvert, setLeadToConvert] = useState<Lead | null>(null)
 
   const leadsStats: StatItem[] = [
     {
       label: 'Total Leads',
-      value: leads.length,
+      value: allLeads.length,
       color: 'blue',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,7 +63,7 @@ function LeadDashboard() {
     },
     {
       label: 'Qualified Leads',
-      value: leads.filter(lead => lead.status === 'qualified').length,
+      value: allLeads.filter(lead => lead.status === 'qualified').length,
       color: 'green',
       icon: (
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -84,8 +79,8 @@ function LeadDashboard() {
     {
       label: 'Avg Score',
       value:
-        leads.length > 0
-          ? Math.round(leads.reduce((sum, lead) => sum + lead.score, 0) / leads.length)
+        allLeads.length > 0
+          ? Math.round(allLeads.reduce((sum, lead) => sum + lead.score, 0) / allLeads.length)
           : 0,
       color: 'yellow',
       icon: (
@@ -111,6 +106,19 @@ function LeadDashboard() {
     })
     await removeLead(lead.id)
     setSelectedLead(null)
+    setConvertModalOpen(false)
+    setLeadToConvert(null)
+  }
+
+  const handleOpenConvertModal = (lead: Lead) => {
+    setLeadToConvert(lead)
+    setConvertModalOpen(true)
+    setSelectedLead(null)
+  }
+
+  const handleCloseConvertModal = () => {
+    setConvertModalOpen(false)
+    setLeadToConvert(null)
   }
 
   const handleCancel = () => {
@@ -142,44 +150,54 @@ function LeadDashboard() {
   return (
     <div className="min-h-screen bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Header
-          title="Seller Console"
-          subtitle="Manage leads and convert them to opportunities"
-          navigationTabs={navigationTabs}
-          activeTab={currentView}
-          onTabChange={tabId => setCurrentView(tabId as 'leads' | 'opportunities')}
+        <div className="mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Lead Dashboard</h1>
+              <p className="text-gray-600 mt-2">Manage and track your sales leads</p>
+            </div>
+            <Link
+              to="/opportunities"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+            >
+              View Opportunities
+            </Link>
+          </div>
+        </div>
+
+        <Stats stats={leadsStats} />
+
+        <LeadFilters
+          searchTerm={searchTerm}
+          statusFilter={statusFilter}
+          sortBy={sortBy}
+          onSearchChange={setSearchTerm}
+          onStatusFilterChange={setStatusFilter}
+          onSortByChange={setSortBy}
         />
 
-        {currentView === 'leads' && (
-          <>
-            <Stats stats={leadsStats} />
+        <LeadTable
+          leads={leads}
+          searchTerm={searchTerm}
+          statusFilter={statusFilter}
+          onLeadSelect={setSelectedLead}
+        />
 
-            <LeadFilters
-              searchTerm={searchTerm}
-              statusFilter={statusFilter}
-              sortBy={sortBy}
-              onSearchChange={setSearchTerm}
-              onStatusFilterChange={setStatusFilter}
-              onSortByChange={setSortBy}
-            />
-
-            <LeadTable
-              leads={leads}
-              searchTerm={searchTerm}
-              statusFilter={statusFilter}
-              onLeadSelect={setSelectedLead}
-            />
-          </>
-        )}
-
-        {currentView === 'opportunities' && <OpportunitiesTable opportunities={opportunities} />}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+          totalItems={totalItems}
+          itemsPerPage={itemsPerPage}
+          onItemsPerPageChange={setItemsPerPage}
+        />
 
         <Sidebar
           lead={selectedLead}
           onSave={updateLead}
           isOpen={!!selectedLead}
           onClose={handleCancel}
-          onConvertToOpportunity={handleConvertToOpportunity}
+          onConvertToOpportunity={handleOpenConvertModal}
         >
           <Sidebar.Body>
             <LeadPanelLayout
@@ -187,10 +205,17 @@ function LeadDashboard() {
               isOpen={!!selectedLead}
               onClose={handleCancel}
               onSave={updateLead}
-              onConvertToOpportunity={handleConvertToOpportunity}
+              onConvertToOpportunity={handleOpenConvertModal}
             />
           </Sidebar.Body>
         </Sidebar>
+
+        <ConvertToOpportunityModal
+          lead={leadToConvert}
+          isOpen={convertModalOpen}
+          onClose={handleCloseConvertModal}
+          onConvert={handleConvertToOpportunity}
+        />
       </div>
     </div>
   )

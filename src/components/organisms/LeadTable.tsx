@@ -6,6 +6,9 @@ interface LeadTableProps {
   searchTerm: string
   statusFilter: string
   onLeadSelect: (lead: Lead) => void
+  totalItems?: number
+  showingFrom?: number
+  showingTo?: number
 }
 
 export default function LeadTable({ leads, searchTerm, statusFilter, onLeadSelect }: LeadTableProps) {

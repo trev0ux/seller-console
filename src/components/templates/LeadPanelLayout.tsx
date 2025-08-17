@@ -9,10 +9,7 @@ interface LeadDetailPanelProps {
   isOpen: boolean
   onClose: () => void
   onSave?: (id: number, updates: Partial<Lead>) => Promise<void>
-  onConvertToOpportunity: (
-    lead: Lead,
-    opportunityData: Omit<Opportunity, 'id' | 'leadId'>
-  ) => Promise<void>
+  onConvertToOpportunity: (lead: Lead) => void
 }
 
 export default function LeadPanelLayout({
@@ -28,15 +25,7 @@ export default function LeadPanelLayout({
     email: lead?.email || '',
   })
   const [errors, setErrors] = useState<{ email?: string }>({})
-  const [converting, setConverting] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [showConvertForm, setShowConvertForm] = useState(false)
-  const [opportunityData, setOpportunityData] = useState({
-    name: '',
-    stage: 'qualification',
-    amount: '',
-    accountName: '',
-  })
 
   useEffect(() => {
     if (lead) {
@@ -44,15 +33,8 @@ export default function LeadPanelLayout({
         status: lead.status,
         email: lead.email,
       })
-      setOpportunityData({
-        name: `${lead.name} - ${lead.company} Opportunity`,
-        stage: 'qualification',
-        amount: '',
-        accountName: lead.company,
-      })
       setErrors({})
       setEditingField(null)
-      setShowConvertForm(false)
     }
   }, [lead, lead?.id, lead?.status, lead?.email])
 
@@ -74,24 +56,9 @@ export default function LeadPanelLayout({
     }
   }
 
-  const handleConvert = async () => {
+  const handleConvert = () => {
     if (!lead) return
-
-    setConverting(true)
-    try {
-      const amount = opportunityData.amount ? parseFloat(opportunityData.amount) : undefined
-      await onConvertToOpportunity(lead, {
-        name: opportunityData.name,
-        stage: opportunityData.stage,
-        amount,
-        accountName: opportunityData.accountName,
-      })
-      onClose()
-    } catch (_error) {
-      setErrors({ email: 'Failed to convert lead to opportunity' })
-    } finally {
-      setConverting(false)
-    }
+    onConvertToOpportunity(lead)
   }
 
   const hasChanges = lead
@@ -117,17 +84,6 @@ export default function LeadPanelLayout({
     }
   }
 
-  const handleQuickConvert = () => {
-    if (!lead) return
-
-    const opportunityData = {
-      name: `${lead.name} - ${lead.company} Opportunity`,
-      stage: 'qualification' as const,
-      amount: undefined,
-      accountName: lead.company,
-    }
-    onConvertToOpportunity(lead, opportunityData)
-  }
 
   if (!isOpen || !lead) return null
 
@@ -206,88 +162,8 @@ export default function LeadPanelLayout({
           </div>
         </div>
 
-        {showConvertForm && (
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg border">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Convert to Opportunity</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Opportunity Name
-                </label>
-                <Input
-                  type="text"
-                  value={opportunityData.name}
-                  onChange={event => setOpportunityData(prev => ({ ...prev, name: event }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter opportunity name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Stage</label>
-                <Select
-                  value={opportunityData.stage}
-                  onChange={event => setOpportunityData(prev => ({ ...prev, stage: event }))}
-                  options={[
-                    { value: 'qualification', label: 'Qualification' },
-                    { value: 'proposal', label: 'Proposal' },
-                    { value: 'negotiation', label: 'Negotiation' },
-                    { value: 'closed-won', label: 'Closed Won' },
-                    { value: 'closed-lost', label: 'Closed Lost' },
-                  ]}
-                  placeholder="Filter by status"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Amount (Optional)
-                </label>
-                <Input
-                  type="number"
-                  value={opportunityData.amount}
-                  onChange={event => setOpportunityData(prev => ({ ...prev, amount: event }))}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter amount"
-                  min={0}
-                  step={0.01}
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Account Name</label>
-                <Input
-                  type="text"
-                  value={opportunityData.accountName}
-                  onChange={event => setOpportunityData(prev => ({ ...prev, accountName: event }))}
-                  placeholder="Enter account name"
-                />
-              </div>
-
-              <div className="flex space-x-3 pt-2">
-                <Button
-                  onClick={handleConvert}
-                  variant="primary"
-                  size="md"
-                  disabled={converting || !opportunityData.name || !opportunityData.accountName}
-                >
-                  {converting ? 'Converting...' : 'Create Opportunity'}
-                </Button>
-                <Button
-                  onClick={() => setShowConvertForm(false)}
-                  disabled={converting}
-                  variant="ghost"
-                  size="md"
-                >
-                  Cancel
-                </Button>
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
-      {/* Footer with action buttons */}
       <footer className="border-t border-gray-200 pt-6 mt-6">
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-0 justify-between">
           <div className="flex items-center flex-col lg:flex-row gap-4 lg:gap-3 ">
@@ -313,7 +189,7 @@ export default function LeadPanelLayout({
               </Button>
             )}
           </div>
-          <Button variant="ghost" size="md" onClick={handleQuickConvert}>
+          <Button variant="ghost" size="md" onClick={handleConvert}>
             Convert to Opportunity
           </Button>
         </div>

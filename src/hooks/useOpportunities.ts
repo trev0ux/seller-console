@@ -1,63 +1,69 @@
 import { useState, useEffect } from 'react'
 import type { Opportunity } from '../types'
+import { useErrorHandler } from './useErrorHandler'
+import { ERROR_CODES } from '../utils/error'
 
 export function useOpportunities() {
   const [opportunities, setOpportunities] = useState<Opportunity[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const { error, executeWithErrorHandling } = useErrorHandler()
 
   useEffect(() => {
     const loadOpportunities = async () => {
-      try {
-        setLoading(true)
-        setError(null)
+      setLoading(true)
+      
+      const result = await executeWithErrorHandling(
+        async () => {
+          const savedOpportunities = localStorage.getItem('opportunities')
+          return savedOpportunities ? JSON.parse(savedOpportunities) : []
+        },
+        ERROR_CODES.LOAD_FAILED,
+        'opportunities'
+      )
 
-        const savedOpportunities = localStorage.getItem('opportunities')
-        const data = savedOpportunities ? JSON.parse(savedOpportunities) : []
-
-        setOpportunities(data)
-      } catch (_error) {
-        setError('Failed to load opportunities')
-      } finally {
-        setLoading(false)
+      if (result !== null) {
+        setOpportunities(result)
       }
+      setLoading(false)
     }
 
     loadOpportunities()
-  }, [])
+  }, [executeWithErrorHandling])
 
   const addOpportunity = async (opportunity: Omit<Opportunity, 'id'>) => {
-    try {
-      const newId = Date.now()
-      const newOpportunity: Opportunity = {
-        ...opportunity,
-        id: newId,
-      }
+    return await executeWithErrorHandling(
+      async () => {
+        const newId = Date.now()
+        const newOpportunity: Opportunity = {
+          ...opportunity,
+          id: newId,
+        }
 
-      const updatedOpportunities = [...opportunities, newOpportunity]
-      setOpportunities(updatedOpportunities)
+        const updatedOpportunities = [...opportunities, newOpportunity]
+        setOpportunities(updatedOpportunities)
 
-      localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
+        localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
 
-      return newOpportunity
-    } catch (error) {
-      setError('Failed to create opportunity')
-      throw error
-    }
+        return newOpportunity
+      },
+      ERROR_CODES.SAVE_FAILED,
+      'opportunity'
+    )
   }
 
   const updateOpportunity = async (id: number, updates: Partial<Opportunity>) => {
-    try {
-      const updatedOpportunities = opportunities.map(opp =>
-        opp.id === id ? { ...opp, ...updates } : opp
-      )
+    await executeWithErrorHandling(
+      async () => {
+        const updatedOpportunities = opportunities.map(opp =>
+          opp.id === id ? { ...opp, ...updates } : opp
+        )
 
-      setOpportunities(updatedOpportunities)
-      localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
-    } catch (error) {
-      setError('Failed to update opportunity')
-      throw error
-    }
+        setOpportunities(updatedOpportunities)
+        localStorage.setItem('opportunities', JSON.stringify(updatedOpportunities))
+      },
+      ERROR_CODES.UPDATE_FAILED,
+      'opportunity'
+    )
   }
 
   return {

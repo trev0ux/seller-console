@@ -70,5 +70,833 @@
     "source": "LinkedIn",
     "score": 82,
     "status": "contacted"
+  },
+  {
+    "id": 9,
+    "name": "Michael Rodriguez",
+    "company": "Quantum Systems",
+    "email": "michael@quantumsys.com",
+    "source": "Website",
+    "score": 76,
+    "status": "new"
+  },
+  {
+    "id": 10,
+    "name": "Ashley Kim",
+    "company": "NextGen Solutions",
+    "email": "ashley@nextgen.io",
+    "source": "Cold Email",
+    "score": 69,
+    "status": "contacted"
+  },
+  {
+    "id": 11,
+    "name": "Christopher Walsh",
+    "company": "Innovate Tech",
+    "email": "chris@innovatetech.com",
+    "source": "LinkedIn",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": 12,
+    "name": "Amanda Foster",
+    "company": "Digital Ventures",
+    "email": "amanda@digitalventures.com",
+    "source": "Referral",
+    "score": 84,
+    "status": "new"
+  },
+  {
+    "id": 13,
+    "name": "James Thompson",
+    "company": "CloudFirst Inc",
+    "email": "james@cloudfirst.com",
+    "source": "Trade Show",
+    "score": 79,
+    "status": "contacted"
+  },
+  {
+    "id": 14,
+    "name": "Rachel Martinez",
+    "company": "SmartFlow",
+    "email": "rachel@smartflow.io",
+    "source": "Website",
+    "score": 87,
+    "status": "qualified"
+  },
+  {
+    "id": 15,
+    "name": "Brian Anderson",
+    "company": "TechPioneer",
+    "email": "brian@techpioneer.com",
+    "source": "Cold Email",
+    "score": 71,
+    "status": "new"
+  },
+  {
+    "id": 16,
+    "name": "Stephanie Clark",
+    "company": "DataMining Corp",
+    "email": "stephanie@datamining.com",
+    "source": "LinkedIn",
+    "score": 93,
+    "status": "contacted"
+  },
+  {
+    "id": 17,
+    "name": "Daniel White",
+    "company": "AI Solutions",
+    "email": "daniel@aisolutions.com",
+    "source": "Referral",
+    "score": 86,
+    "status": "qualified"
+  },
+  {
+    "id": 18,
+    "name": "Jessica Turner",
+    "company": "FutureTech",
+    "email": "jessica@futuretech.io",
+    "source": "Website",
+    "score": 75,
+    "status": "new"
+  },
+  {
+    "id": 19,
+    "name": "Kevin Phillips",
+    "company": "CyberSec Inc",
+    "email": "kevin@cybersec.com",
+    "source": "Trade Show",
+    "score": 89,
+    "status": "contacted"
+  },
+  {
+    "id": 20,
+    "name": "Lauren Parker",
+    "company": "FinTech Innovations",
+    "email": "lauren@fintech.io",
+    "source": "Cold Email",
+    "score": 72,
+    "status": "new"
+  },
+  {
+    "id": 21,
+    "name": "Steven Collins",
+    "company": "BlockChain Dynamics",
+    "email": "steven@blockchain.com",
+    "source": "LinkedIn",
+    "score": 94,
+    "status": "qualified"
+  },
+  {
+    "id": 22,
+    "name": "Nicole Evans",
+    "company": "Machine Learning Lab",
+    "email": "nicole@mllab.com",
+    "source": "Referral",
+    "score": 81,
+    "status": "contacted"
+  },
+  {
+    "id": 23,
+    "name": "Brandon Mitchell",
+    "company": "IoT Solutions",
+    "email": "brandon@iotsolutions.com",
+    "source": "Website",
+    "score": 77,
+    "status": "new"
+  },
+  {
+    "id": 24,
+    "name": "Melissa Roberts",
+    "company": "VR Innovations",
+    "email": "melissa@vrinnovations.com",
+    "source": "Trade Show",
+    "score": 85,
+    "status": "contacted"
+  },
+  {
+    "id": 25,
+    "name": "Justin Cooper",
+    "company": "AR Technologies",
+    "email": "justin@artech.com",
+    "source": "Cold Email",
+    "score": 68,
+    "status": "new"
+  },
+  {
+    "id": 26,
+    "name": "Samantha Reed",
+    "company": "RoboticsFirst",
+    "email": "samantha@robotics.com",
+    "source": "LinkedIn",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": 27,
+    "name": "Gregory Baker",
+    "company": "Automation Plus",
+    "email": "gregory@autoplus.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "contacted"
+  },
+  {
+    "id": 28,
+    "name": "Diana Gonzalez",
+    "company": "Smart Systems",
+    "email": "diana@smartsys.io",
+    "source": "Website",
+    "score": 74,
+    "status": "new"
+  },
+  {
+    "id": 29,
+    "name": "Patrick Murphy",
+    "company": "Neural Networks Inc",
+    "email": "patrick@neural.com",
+    "source": "Trade Show",
+    "score": 88,
+    "status": "contacted"
+  },
+  {
+    "id": 30,
+    "name": "Kimberly Rivera",
+    "company": "Deep Learning Corp",
+    "email": "kimberly@deeplearn.com",
+    "source": "Cold Email",
+    "score": 70,
+    "status": "new"
+  },
+  {
+    "id": 31,
+    "name": "Timothy Scott",
+    "company": "Quantum Computing",
+    "email": "timothy@quantum.io",
+    "source": "LinkedIn",
+    "score": 96,
+    "status": "qualified"
+  },
+  {
+    "id": 32,
+    "name": "Angela Morris",
+    "company": "Edge Computing",
+    "email": "angela@edgecomp.com",
+    "source": "Referral",
+    "score": 82,
+    "status": "contacted"
+  },
+  {
+    "id": 33,
+    "name": "Ryan Hayes",
+    "company": "5G Networks",
+    "email": "ryan@5gnetworks.com",
+    "source": "Website",
+    "score": 78,
+    "status": "new"
+  },
+  {
+    "id": 34,
+    "name": "Heather Price",
+    "company": "Satellite Tech",
+    "email": "heather@sattech.com",
+    "source": "Trade Show",
+    "score": 86,
+    "status": "contacted"
+  },
+  {
+    "id": 35,
+    "name": "Matthew Ward",
+    "company": "Space Technologies",
+    "email": "matthew@spacetech.io",
+    "source": "Cold Email",
+    "score": 67,
+    "status": "new"
+  },
+  {
+    "id": 36,
+    "name": "Christina Torres",
+    "company": "Renewable Energy",
+    "email": "christina@renewable.com",
+    "source": "LinkedIn",
+    "score": 89,
+    "status": "qualified"
+  },
+  {
+    "id": 37,
+    "name": "Joshua Peterson",
+    "company": "Solar Solutions",
+    "email": "joshua@solar.io",
+    "source": "Referral",
+    "score": 84,
+    "status": "contacted"
+  },
+  {
+    "id": 38,
+    "name": "Michelle Gray",
+    "company": "Wind Power Inc",
+    "email": "michelle@windpower.com",
+    "source": "Website",
+    "score": 73,
+    "status": "new"
+  },
+  {
+    "id": 39,
+    "name": "Jeremy Ross",
+    "company": "Battery Tech",
+    "email": "jeremy@batterytech.com",
+    "source": "Trade Show",
+    "score": 87,
+    "status": "contacted"
+  },
+  {
+    "id": 40,
+    "name": "Brittany Wood",
+    "company": "Electric Vehicles",
+    "email": "brittany@evtech.com",
+    "source": "Cold Email",
+    "score": 71,
+    "status": "new"
+  },
+  {
+    "id": 41,
+    "name": "Nathan Watson",
+    "company": "Autonomous Systems",
+    "email": "nathan@autonomous.io",
+    "source": "LinkedIn",
+    "score": 92,
+    "status": "qualified"
+  },
+  {
+    "id": 42,
+    "name": "Crystal Brooks",
+    "company": "Smart Cities",
+    "email": "crystal@smartcities.com",
+    "source": "Referral",
+    "score": 80,
+    "status": "contacted"
+  },
+  {
+    "id": 43,
+    "name": "Carl Kelly",
+    "company": "Urban Tech",
+    "email": "carl@urbantech.com",
+    "source": "Website",
+    "score": 76,
+    "status": "new"
+  },
+  {
+    "id": 44,
+    "name": "Vanessa Sanders",
+    "company": "Green Technology",
+    "email": "vanessa@greentech.io",
+    "source": "Trade Show",
+    "score": 85,
+    "status": "contacted"
+  },
+  {
+    "id": 45,
+    "name": "Adam Price",
+    "company": "Sustainable Solutions",
+    "email": "adam@sustainable.com",
+    "source": "Cold Email",
+    "score": 69,
+    "status": "new"
+  },
+  {
+    "id": 46,
+    "name": "Taylor Powell",
+    "company": "Eco Innovations",
+    "email": "taylor@ecoinnovations.com",
+    "source": "LinkedIn",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": 47,
+    "name": "Jordan Long",
+    "company": "Climate Tech",
+    "email": "jordan@climatetech.io",
+    "source": "Referral",
+    "score": 83,
+    "status": "contacted"
+  },
+  {
+    "id": 48,
+    "name": "Alexis Hughes",
+    "company": "Carbon Solutions",
+    "email": "alexis@carbon.com",
+    "source": "Website",
+    "score": 74,
+    "status": "new"
+  },
+  {
+    "id": 49,
+    "name": "Marcus Flores",
+    "company": "Bio Technology",
+    "email": "marcus@biotech.com",
+    "source": "Trade Show",
+    "score": 88,
+    "status": "contacted"
+  },
+  {
+    "id": 50,
+    "name": "Andrea Washington",
+    "company": "Health Tech",
+    "email": "andrea@healthtech.io",
+    "source": "Cold Email",
+    "score": 72,
+    "status": "new"
+  },
+  {
+    "id": 51,
+    "name": "Tyler Butler",
+    "company": "Medical Devices",
+    "email": "tyler@meddevices.com",
+    "source": "LinkedIn",
+    "score": 94,
+    "status": "qualified"
+  },
+  {
+    "id": 52,
+    "name": "Kayla Simmons",
+    "company": "Pharma Innovation",
+    "email": "kayla@pharmainno.com",
+    "source": "Referral",
+    "score": 81,
+    "status": "contacted"
+  },
+  {
+    "id": 53,
+    "name": "Derek Foster",
+    "company": "Digital Health",
+    "email": "derek@digitalhealth.io",
+    "source": "Website",
+    "score": 77,
+    "status": "new"
+  },
+  {
+    "id": 54,
+    "name": "Natalie Jenkins",
+    "company": "Telemedicine Corp",
+    "email": "natalie@telemedicine.com",
+    "source": "Trade Show",
+    "score": 86,
+    "status": "contacted"
+  },
+  {
+    "id": 55,
+    "name": "Blake Perry",
+    "company": "Wearable Tech",
+    "email": "blake@wearabletech.com",
+    "source": "Cold Email",
+    "score": 68,
+    "status": "new"
+  },
+  {
+    "id": 56,
+    "name": "Morgan Russell",
+    "company": "Fitness Technology",
+    "email": "morgan@fitnesstech.io",
+    "source": "LinkedIn",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": 57,
+    "name": "Kyle Griffin",
+    "company": "Sports Analytics",
+    "email": "kyle@sportsanalytics.com",
+    "source": "Referral",
+    "score": 84,
+    "status": "contacted"
+  },
+  {
+    "id": 58,
+    "name": "Paige Diaz",
+    "company": "Gaming Technology",
+    "email": "paige@gamingtech.com",
+    "source": "Website",
+    "score": 75,
+    "status": "new"
+  },
+  {
+    "id": 59,
+    "name": "Shane Hayes",
+    "company": "Entertainment Tech",
+    "email": "shane@entertainmenttech.io",
+    "source": "Trade Show",
+    "score": 87,
+    "status": "contacted"
+  },
+  {
+    "id": 60,
+    "name": "Courtney Myers",
+    "company": "Streaming Solutions",
+    "email": "courtney@streaming.com",
+    "source": "Cold Email",
+    "score": 70,
+    "status": "new"
+  },
+  {
+    "id": 61,
+    "name": "Austin Ford",
+    "company": "Content Technology",
+    "email": "austin@contenttech.io",
+    "source": "LinkedIn",
+    "score": 93,
+    "status": "qualified"
+  },
+  {
+    "id": 62,
+    "name": "Chelsea Reynolds",
+    "company": "Media Innovations",
+    "email": "chelsea@mediainno.com",
+    "source": "Referral",
+    "score": 82,
+    "status": "contacted"
+  },
+  {
+    "id": 63,
+    "name": "Garrett Ellis",
+    "company": "Publishing Tech",
+    "email": "garrett@pubtech.com",
+    "source": "Website",
+    "score": 78,
+    "status": "new"
+  },
+  {
+    "id": 64,
+    "name": "Sierra Stone",
+    "company": "Education Technology",
+    "email": "sierra@edtech.io",
+    "source": "Trade Show",
+    "score": 89,
+    "status": "contacted"
+  },
+  {
+    "id": 65,
+    "name": "Cody Hamilton",
+    "company": "Learning Platforms",
+    "email": "cody@learning.com",
+    "source": "Cold Email",
+    "score": 71,
+    "status": "new"
+  },
+  {
+    "id": 66,
+    "name": "Jasmine Graham",
+    "company": "Training Solutions",
+    "email": "jasmine@training.io",
+    "source": "LinkedIn",
+    "score": 95,
+    "status": "qualified"
+  },
+  {
+    "id": 67,
+    "name": "Dustin Sullivan",
+    "company": "Skill Development",
+    "email": "dustin@skilldev.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "contacted"
+  },
+  {
+    "id": 68,
+    "name": "Brooke Wallace",
+    "company": "Career Tech",
+    "email": "brooke@careertech.io",
+    "source": "Website",
+    "score": 76,
+    "status": "new"
+  },
+  {
+    "id": 69,
+    "name": "Trevor West",
+    "company": "Recruitment Tech",
+    "email": "trevor@recruittech.com",
+    "source": "Trade Show",
+    "score": 86,
+    "status": "contacted"
+  },
+  {
+    "id": 70,
+    "name": "Jenna Gardner",
+    "company": "HR Solutions",
+    "email": "jenna@hrsolutions.io",
+    "source": "Cold Email",
+    "score": 67,
+    "status": "new"
+  },
+  {
+    "id": 71,
+    "name": "Logan Woods",
+    "company": "Workforce Analytics",
+    "email": "logan@workforce.com",
+    "source": "LinkedIn",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": 72,
+    "name": "Haley Fisher",
+    "company": "Productivity Tools",
+    "email": "haley@productivity.io",
+    "source": "Referral",
+    "score": 84,
+    "status": "contacted"
+  },
+  {
+    "id": 73,
+    "name": "Preston Ellis",
+    "company": "Collaboration Tech",
+    "email": "preston@collabtech.com",
+    "source": "Website",
+    "score": 79,
+    "status": "new"
+  },
+  {
+    "id": 74,
+    "name": "Mackenzie Hunt",
+    "company": "Communication Tools",
+    "email": "mackenzie@commtools.io",
+    "source": "Trade Show",
+    "score": 88,
+    "status": "contacted"
+  },
+  {
+    "id": 75,
+    "name": "Dalton Palmer",
+    "company": "Project Management",
+    "email": "dalton@projectmgmt.com",
+    "source": "Cold Email",
+    "score": 73,
+    "status": "new"
+  },
+  {
+    "id": 76,
+    "name": "Leah Robertson",
+    "company": "Task Automation",
+    "email": "leah@taskautomation.io",
+    "source": "LinkedIn",
+    "score": 92,
+    "status": "qualified"
+  },
+  {
+    "id": 77,
+    "name": "Tanner Cole",
+    "company": "Workflow Solutions",
+    "email": "tanner@workflow.com",
+    "source": "Referral",
+    "score": 85,
+    "status": "contacted"
+  },
+  {
+    "id": 78,
+    "name": "Summer Boyd",
+    "company": "Process Optimization",
+    "email": "summer@processopt.io",
+    "source": "Website",
+    "score": 74,
+    "status": "new"
+  },
+  {
+    "id": 79,
+    "name": "Colton Bryant",
+    "company": "Business Intelligence",
+    "email": "colton@businessint.com",
+    "source": "Trade Show",
+    "score": 87,
+    "status": "contacted"
+  },
+  {
+    "id": 80,
+    "name": "Mariah Bell",
+    "company": "Analytics Platform",
+    "email": "mariah@analytics.io",
+    "source": "Cold Email",
+    "score": 69,
+    "status": "new"
+  },
+  {
+    "id": 81,
+    "name": "Caleb Spencer",
+    "company": "Data Visualization",
+    "email": "caleb@datavis.com",
+    "source": "LinkedIn",
+    "score": 94,
+    "status": "qualified"
+  },
+  {
+    "id": 82,
+    "name": "Kiara Knight",
+    "company": "Reporting Tools",
+    "email": "kiara@reporting.io",
+    "source": "Referral",
+    "score": 81,
+    "status": "contacted"
+  },
+  {
+    "id": 83,
+    "name": "Mason Dixon",
+    "company": "Dashboard Solutions",
+    "email": "mason@dashboard.com",
+    "source": "Website",
+    "score": 77,
+    "status": "new"
+  },
+  {
+    "id": 84,
+    "name": "Skylar Ray",
+    "company": "Metrics Technology",
+    "email": "skylar@metrics.io",
+    "source": "Trade Show",
+    "score": 86,
+    "status": "contacted"
+  },
+  {
+    "id": 85,
+    "name": "Tristan Webb",
+    "company": "Performance Analytics",
+    "email": "tristan@performance.com",
+    "source": "Cold Email",
+    "score": 68,
+    "status": "new"
+  },
+  {
+    "id": 86,
+    "name": "Destiny Reid",
+    "company": "KPI Solutions",
+    "email": "destiny@kpi.io",
+    "source": "LinkedIn",
+    "score": 90,
+    "status": "qualified"
+  },
+  {
+    "id": 87,
+    "name": "Landon Burns",
+    "company": "Revenue Optimization",
+    "email": "landon@revenue.com",
+    "source": "Referral",
+    "score": 83,
+    "status": "contacted"
+  },
+  {
+    "id": 88,
+    "name": "Ariana Webb",
+    "company": "Sales Technology",
+    "email": "ariana@salestech.io",
+    "source": "Website",
+    "score": 75,
+    "status": "new"
+  },
+  {
+    "id": 89,
+    "name": "Camden Shaw",
+    "company": "CRM Solutions",
+    "email": "camden@crm.com",
+    "source": "Trade Show",
+    "score": 88,
+    "status": "contacted"
+  },
+  {
+    "id": 90,
+    "name": "Melody Pierce",
+    "company": "Lead Generation",
+    "email": "melody@leadgen.io",
+    "source": "Cold Email",
+    "score": 72,
+    "status": "new"
+  },
+  {
+    "id": 91,
+    "name": "Easton Cross",
+    "company": "Marketing Automation",
+    "email": "easton@marketing.com",
+    "source": "LinkedIn",
+    "score": 93,
+    "status": "qualified"
+  },
+  {
+    "id": 92,
+    "name": "Serenity Fox",
+    "company": "Campaign Management",
+    "email": "serenity@campaign.io",
+    "source": "Referral",
+    "score": 82,
+    "status": "contacted"
+  },
+  {
+    "id": 93,
+    "name": "Knox Greene",
+    "company": "Email Marketing",
+    "email": "knox@emailmkt.com",
+    "source": "Website",
+    "score": 78,
+    "status": "new"
+  },
+  {
+    "id": 94,
+    "name": "Journey Luna",
+    "company": "Social Media Tech",
+    "email": "journey@socialmedia.io",
+    "source": "Trade Show",
+    "score": 89,
+    "status": "contacted"
+  },
+  {
+    "id": 95,
+    "name": "Braxton Sharp",
+    "company": "Advertising Technology",
+    "email": "braxton@adtech.com",
+    "source": "Cold Email",
+    "score": 70,
+    "status": "new"
+  },
+  {
+    "id": 96,
+    "name": "Phoenix Blake",
+    "company": "Brand Technology",
+    "email": "phoenix@brandtech.io",
+    "source": "LinkedIn",
+    "score": 91,
+    "status": "qualified"
+  },
+  {
+    "id": 97,
+    "name": "River Stone",
+    "company": "Customer Experience",
+    "email": "river@customerexp.com",
+    "source": "Referral",
+    "score": 84,
+    "status": "contacted"
+  },
+  {
+    "id": 98,
+    "name": "Sage Morgan",
+    "company": "User Experience",
+    "email": "sage@userexp.io",
+    "source": "Website",
+    "score": 76,
+    "status": "new"
+  },
+  {
+    "id": 99,
+    "name": "Atlas Quinn",
+    "company": "Interface Design",
+    "email": "atlas@interface.com",
+    "source": "Trade Show",
+    "score": 87,
+    "status": "contacted"
+  },
+  {
+    "id": 100,
+    "name": "Luna Sage",
+    "company": "Design Technology",
+    "email": "luna@designtech.io",
+    "source": "Cold Email",
+    "score": 73,
+    "status": "new"
   }
 ]
