@@ -7,7 +7,7 @@ interface OpportunitiesTableProps {
 export default function OpportunitiesTable({ opportunities }: OpportunitiesTableProps) {
   if (opportunities.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div className="p-6 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-900">Opportunities</h2>
           <p className="text-sm text-gray-600 mt-1">Track and manage your sales opportunities</p>
