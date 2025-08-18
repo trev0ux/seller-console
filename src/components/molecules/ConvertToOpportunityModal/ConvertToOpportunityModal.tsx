@@ -92,7 +92,7 @@ export default function ConvertToOpportunityModal({
 
   return (
     <div className="fixed inset-0 bg-gray-600/50 overflow-y-auto h-full w-full z-50">
-      <div className="relative top-20 mx-auto p-5 border border-gray-200 w-96 shadow-lg rounded-md bg-white">
+      <div className="relative lg:top-20 top-0 h-full lg:h-auto mx-auto p-2 lg:p-5 border border-gray-200 w-full lg:w-96 shadow-lg lg:rounded-md bg-white">
         <div className="mt-3">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-medium text-gray-900">Convert Lead to Opportunity</h3>
